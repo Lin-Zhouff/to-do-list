@@ -15,9 +15,9 @@ let items: item[] = [
 ];
 
 function search(text: string, pipe: PipeTransform): item[] {
-  return items.filter(country => {
+  return items.filter(itemlist => {
     const term = text.toLowerCase();
-    return country.name.toLowerCase().includes(term);
+    return itemlist.name.toLowerCase().startsWith(term);
   });
 }
 
