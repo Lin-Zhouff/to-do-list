@@ -1,0 +1,22 @@
+.list_container {
+  margin: auto;
+  width: 30em;
+  border: 5px solid #000;
+  padding: 20px;
+}
+.make_list {
+  text-align: center;
+  margin: auto;
+  width: 20em;
+}
+
+.Add {
+  border-radius: 8px;
+  background-color: white;
+  color: #008CBA;
+  border: 2px solid #008CBA;
+  font-size: 15px;
+}
+tr :hover {
+  background: crimson;
+}
