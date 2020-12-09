@@ -2,7 +2,7 @@
   <div class="make_list">
       <input type="text" placeholder="Add to todo list" [(ngModel)]="newItemName" (keyup.enter)="add()"/><button class="Add" (click)="add()">Add</button>
       <br>
-      <input type="text" placeholder="Search with starting characters" (keyup.enter)="search()"/>
+      <input type="text" placeholder="Search with starting characters" (keyup.enter)="search()" size="25px"/>
   </div>
   <app-todo-list [items]="itmes"></app-todo-list>
 </div>

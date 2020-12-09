@@ -13,13 +13,6 @@ let items: item[] = [
   {name: 'second'}
 ];
 
-function search(text: string, pipe: PipeTransform): item[] {
-  return items.filter(itemlist => {
-    const term = text.toLowerCase();
-    return itemlist.name.toLowerCase().startsWith(term);
-  });
-}
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -42,8 +35,11 @@ export class AppComponent implements OnInit, OnChanges, OnDestroy, DoCheck, Afte
     }
     console.log(this.itmes);
   }
-  search(): void{
-    console.log('hereeeeeeeeeeeeeeeeeee');
+  search(): item[] {
+    return items.filter(itemlist => {
+      const term = this.searchKey.toLowerCase();
+      return itemlist.name.toLowerCase().startsWith(term);
+    });
   }
 
   constructor() {
