@@ -1,11 +1,10 @@
-import {Component, Input, PipeTransform} from '@angular/core';
+import {Component, Input, PipeTransform, OnInit, OnChanges, OnDestroy, DoCheck, AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {DecimalPipe} from '@angular/common';
 import {first, map, startWith} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 
 // tslint:disable-next-line:class-name
-interface item{
+export interface item {
   name: string;
 }
 
@@ -27,11 +26,11 @@ function search(text: string, pipe: PipeTransform): item[] {
   providers: [DecimalPipe],
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnChanges, OnDestroy, DoCheck, AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit{
   title = 'to-do-list';
   newItemName = '';
-  itmes: Observable<item[]>;
-  filter = new FormControl('');
+  itmes = items;
+  searchKey = '';
 
   add(): void {
     if (this.newItemName === ''){
@@ -41,27 +40,38 @@ export class AppComponent {
       newitem.name = this.newItemName;
       items.push(newitem);
     }
-
-    this.itmes = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, DecimalPipe))
-    );
+    console.log(this.itmes);
+  }
+  search(): void{
+    console.log('hereeeeeeeeeeeeeeeeeee');
   }
 
-  constructor(pipe: DecimalPipe) {
-    this.itmes = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe))
-    );
+  constructor() {
+  }
+  ngOnChanges(): void {
+    console.log('this component don\'t have parent, so this will never show up');
+  }
+  ngOnInit(): void {
+    console.log('app component Init');
   }
 
-  delete(event): void{
-    let key = event.target.innerHTML;
-    items.splice(items.findIndex(v => v.name === key), 1);
-    this.itmes = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, DecimalPipe))
-    );
+  ngDoCheck(): void{
+    console.log('app component Check');
   }
 
+  ngAfterContentInit(): void {
+    console.log('when list loaded');
+  }
+  ngAfterContentChecked(): void {
+    console.log('when list Checked');
+  }
+  ngAfterViewInit(): void {
+    console.log('All components Inited');
+  }
+  ngAfterViewChecked(): void {
+    console.log('All components Checked');
+  }
+  ngOnDestroy(): void {
+    console.log('root component been removed');
+  }
 }

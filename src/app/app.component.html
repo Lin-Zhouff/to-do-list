@@ -2,9 +2,7 @@
   <div class="make_list">
       <input type="text" placeholder="Add to todo list" [(ngModel)]="newItemName" (keyup.enter)="add()"/><button class="Add" (click)="add()">Add</button>
       <br>
-      <input class="form-control ml-2" type="text" placeholder="Search with starting characters" [formControl]="filter"/>
+      <input type="text" placeholder="Search with starting characters" (keyup.enter)="search()"/>
   </div>
-  <tr *ngFor="let itme of itmes | async;" >
-    <td (click)="delete($event)">{{itme.name}}</td>
-  </tr>
+  <app-todo-list [items]="itmes"></app-todo-list>
 </div>
